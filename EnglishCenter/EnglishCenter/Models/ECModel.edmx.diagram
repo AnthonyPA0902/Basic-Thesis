@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23bb0b9f8b42457092cd0a8e1f592201" Name="Diagram1">
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Course" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Manager" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Student" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Teacher" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Course_Schedule" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Grade" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Homework" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnglishCenterDBModel.Picture" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Course_Schedule_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Course_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Course_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Grade_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Homeworks_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Picture_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="EnglishCenterDBModel.FK_Grade_Teacher" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

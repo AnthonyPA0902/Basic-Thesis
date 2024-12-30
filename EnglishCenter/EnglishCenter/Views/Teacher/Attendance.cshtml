@@ -1,0 +1,164 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Attendance";
+    Layout = "~/Views/Shared/Teacher_Layout.cshtml";
+
+    int courseId = Convert.ToInt32(Request.QueryString["courseId"]);
+}
+
+<script>
+    function filterAttendance() {
+        var selectedStudentId = document.getElementById("studentFilter").value;
+
+        var rows = document.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            if (i === 0 || rows[i].getAttribute("data-student-id") === selectedStudentId || selectedStudentId === "all") {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+<a href="~/Teacher/Course_Menu?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE MENU</a><br /><br /><br />
+@if (Session["id"] != null)
+{
+    int teacherid = (int)Session["id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Attendance> attendances = context.Attendances
+              .Where(a => a.courseId == courseId)
+              .ToList();
+
+        <select id="studentFilter" onchange="filterAttendance()">
+            <option value="all">All Students</option>
+            @{
+                var uniqueStudentNames = new HashSet<string>();
+
+                foreach (var item in attendances)
+                {
+                    if (uniqueStudentNames.Add(item.Student.englishName))
+                    {
+                        <option value="@item.Student.id">@item.Student.englishName</option>
+                    }
+                }
+            }
+        </select>
+
+        if (attendances.Any())
+        {
+            <a href="~/Teacher/CreateAttend?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">ADD</a>
+            <table class="table" style="margin: 30px">
+                <thead>
+                    <tr>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Lesson</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Attendance</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in attendances)
+                    {
+                        <tr data-student-id="@item.Student.id">
+                            <th scope="row">@item.Student.englishName</th>
+                            <td>@item.lesson</td>
+                            <td>@item.date.ToString().Substring(0, 10)</td>
+                            @if (@item.attend != false)
+                            {
+                                <td><img src="~/Images/true-icon.png" style="width:30px" height="30" alt="True Icon" /></td>
+                            }
+                            else
+                            {
+                                <td><img src="~/Images/false-icon.png" style="width:30px" height="30" alt="False Icon" /></td>
+                            }
+                            <td style="text-align: right">
+                                <form action="@Url.Action("EditAttend", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Edit</button>
+                                </form>
+                            </td>
+                            <td style="text-align: left">
+                                <form action="@Url.Action("DeleteAttend", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}
+@if (Session["ta_id"] != null)
+{
+    int teacherid = (int)Session["ta_id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Attendance> attendances = context.Attendances
+              .Where(a => a.courseId == courseId)
+              .ToList();
+
+        <select id="studentFilter" onchange="filterAttendance()">
+            <option value="all">All Students</option>
+            @{
+                var uniqueStudentNames = new HashSet<string>();
+
+                foreach (var item in attendances)
+                {
+                    if (uniqueStudentNames.Add(item.Student.englishName))
+                    {
+                        <option value="@item.Student.id">@item.Student.englishName</option>
+                    }
+                }
+            }
+        </select>
+
+        if (attendances.Any())
+        {
+            <a href="~/Teacher/CreateAttend?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">ADD</a>
+            <table class="table" style="margin: 30px">
+                <thead>
+                    <tr>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Lesson</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Attendance</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in attendances)
+                    {
+                        <tr data-student-id="@item.Student.id">
+                            <th scope="row">@item.Student.englishName</th>
+                            <td>@item.lesson</td>
+                            <td>@item.date.ToString().Substring(0, 10)</td>
+                            @if (@item.attend != false)
+                            {
+                                <td><img src="~/Images/true-icon.png" style="width:30px" height="30" alt="True Icon" /></td>
+                            }
+                            else
+                            {
+                                <td><img src="~/Images/false-icon.png" style="width:30px" height="30" alt="False Icon" /></td>
+                            }
+                            <td style="text-align: right">
+                                <form action="@Url.Action("EditAttend", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Edit</button>
+                                </form>
+                            </td>
+                            <td style="text-align: left">
+                                <form action="@Url.Action("DeleteAttend", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

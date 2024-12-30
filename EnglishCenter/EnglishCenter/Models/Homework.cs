@@ -14,11 +14,13 @@ namespace EnglishCenter.Models
     
     public partial class Homework
     {
+        public int id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<double> score { get; set; }
-        public Nullable<double> total { get; set; }
         public int courseId { get; set; }
+        public int studentId { get; set; }
     
         public virtual Course Course { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

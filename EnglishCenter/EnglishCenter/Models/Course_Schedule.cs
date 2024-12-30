@@ -14,6 +14,7 @@ namespace EnglishCenter.Models
     
     public partial class Course_Schedule
     {
+        public int id { get; set; }
         public Nullable<int> lesson { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string unit_and_grade { get; set; }

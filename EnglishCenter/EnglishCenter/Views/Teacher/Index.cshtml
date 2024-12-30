@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Teacher_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/CSS/Index.css" />
+<script src="~/Scripts/index.js"></script>
+
+<hr />
+<div class="ipic">
+    <img class="intro-pic " src="~/Images/intro_pic.jpg" alt="Intro Picture Of Center" />
+</div>
+
+<div class="center-name">
+    <h1>SHINING STAR ACADEMY</h1>
+</div>
+
+<div class="introduction">
+    <h2>I. Introduction</h2>
+    <p class="intro-para">
+        With over 15 years of experience and a team of reputable teachers and assistants, we bring valuable knowledge and useful skills to your children in learning English. Step by step, we create bright stars for the future.
+    </p>
+</div>
+
+<div class="program">
+    <h2>II. Training Program</h2>
+    <p>
+        The program is designed according to Cambridge standards and certified by leading education experts. At Shining Star, we train ages 3 to 17. The program is divided into 3 Modules and designed to suit specific age groups.
+    </p>
+    <hr />
+    <div class="module">
+        <div class="item1">
+            For children aged 3-6, this is the age when they first encounter English. We focus on guiding them to learn the basics such as the alphabet, pronunciation, simple and common vocabulary. This is called the Blue Star program.
+        </div>
+        <div class="item2">
+            <img class="star" src="~/Images/blue-star.jpg" alt="Blue Star" />
+        </div>
+        <div class="item3">
+            From 7-12 years old, this is the age when children become familiar with English, and it's the most crucial period to build a solid foundation for their future English proficiency. We focus on teaching essential grammar, communicative vocabulary, and applying English in daily life. This is called the Yellow Star program.
+        </div>
+        <div class="item4">
+            <img class="star" src="~/Images/yellow-star.jpg" alt="Yellow Star" />
+        </div>
+        <div class="item5">
+            When children are 13-17 years old, this is the age when they can use English fluently and confidently. They will begin to explore their interests in this language and use it to expand their horizons globally. We focus on enhancing communication and interpersonal skills, reinforcing and improving grammar, and cultivating creativity and critical thinking. This is called the Red Star program.
+        </div>
+        <div class="item6">
+            <img class="star" src="~/Images/red-star.png" alt="Red Star" />
+        </div>
+    </div>
+</div>
+<br />
+<div class="pictures">
+    <h2>III. Some Representative Images</h2>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="numbertext">1 / 5</div>
+            <img class="slide-pic" src="~/Images/learning.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">2 / 5</div>
+            <img class="slide-pic" src="~/Images/cooking.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">3 / 5</div>
+            <img class="slide-pic" src="~/Images/playing.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">4 / 5</div>
+            <img class="slide-pic" src="~/Images/going.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">5 / 5</div>
+            <img class="slide-pic" src="~/Images/acting.jpg">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+</div>
+
+<div class="reason">
+    <h2>IV. Why Choose Us</h2>
+    <div class="list-of-reason">
+        <div class="enviroment">
+            <img class="list-logo" src="~/Images/100-percent.jpg" alt="one hundred percent" /><br />
+            <span>One Hundred Percent English-Language Learning Environment</span>
+        </div>
+        <div class="modern">
+            <img class="list-logo" src="~/Images/modern-learning.png" alt="modern learning" /><br />
+            <span>Modernized Teaching Methods and Learning Equipment</span>
+        </div>
+        <div class="scholarship">
+            <img class="list-logo" src="~/Images/scholarship.jpg" alt="scholarship" /><br />
+            <span>All Generations of Students Receive Foreign Scholarships</span>
+        </div>
+    </div>
+</div>

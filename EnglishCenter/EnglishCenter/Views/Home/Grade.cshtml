@@ -1,0 +1,61 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Grade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="~/CSS/grade.css" />
+
+<a href="~/Home/Course_Menu" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE MENU</a>
+<div class="container" style="margin: 30px; font-size: 30px">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="text-align:center; font-weight:700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:30px; margin:15px;">Bảng Điểm Của @Session["name"]</div>
+                    <div class="table-responsive" id="proTeamScroll" tabindex="2" style="height: 400px; overflow: hidden; outline: none;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Attendance</th>
+                                    <th scope="col">Course Project</th>
+                                    <th scope="col">Homework</th>
+                                    <th scope="col">MMT</th>
+                                    <th scope="col">EOMT</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Session["id"] != null)
+                                {
+                                    int studentID = (int)Session["id"];
+
+                                    using (var context = new EnglishCenterDBEntities())
+                                    {
+                                        List<Grade> grade = context.Grades.Where(g => g.studentId == studentID).ToList();
+
+                                        if (grade.Any())
+                                        {
+                                            foreach (var item in grade)
+                                            {
+                                                <tr>
+                                                    <td style="font-weight:bold">@item.attendance</td>
+                                                    <td style="font-weight:bold">@item.courseProject</td>
+                                                    <td style="font-weight:bold">@item.homework</td>
+                                                    <td style="font-weight:bold">@item.MMT</td>
+                                                    <td style="font-weight:bold">@item.EOMT</td>
+                                                    <td style="font-weight:bold; color:red;">@item.total</td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Course_Menu";
+    Layout = "~/Views/Shared/Teacher_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/CSS/course_menu.css" />
+
+@{
+    int courseId = Convert.ToInt32(Request.QueryString["courseId"]);
+}
+
+<h2> WELCOME TO YOUR COURSE </h2>
+<a href="~/Teacher/Courses" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE</a>
+<div class="menu">
+    <div class="grid">
+        <div class="menu-item">
+            <a href="~/Teacher/Attendance?courseId=@courseId" style="text-decoration: none; color:black">
+                <img class="logo" src="~/Images/attendance-logo.png" alt="" /><br />
+                <span style="font-weight: 600;"> ATTENDANCE </span>
+            </a>
+        </div>
+
+        <div class="menu-item">
+            <a href="~/Teacher/Schedule?courseId=@courseId" style="text-decoration: none; color:black">
+                <img class="logo" src="~/Images/schedule-logo.png" alt="" /><br />
+                <span style="font-weight: 600;"> SCHEDULE </span>
+            </a>
+        </div>
+
+        <div class="menu-item">
+            <a href="~/Teacher/Homework?courseId=@courseId" style="text-decoration: none; color:black">
+                <img class="logo" src="~/Images/homework-logo.png" alt="" /><br />
+                <span style="font-weight: 600;"> HOMEWORK </span>
+            </a>
+        </div>
+
+        <div class="menu-item">
+            <a href="~/Teacher/Grade?courseId=@courseId" style="text-decoration: none; color:black">
+                <img class="logo" src="~/Images/grade-logo.png" alt="" /><br />
+                <span style="font-weight: 600;"> GRADE </span>
+            </a>
+        </div>
+    </div>
+</div>
+

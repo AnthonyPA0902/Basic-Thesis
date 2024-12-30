@@ -1,0 +1,86 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/Teacher_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/CSS/courses.css" />
+
+@if (Session["id"] != null)
+{
+    int teacherid = (int)Session["id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Course> teacherCourses = context.Courses.Where(c => c.teacherID == teacherid).ToList();
+
+        if (teacherCourses.Any())
+        {
+            <div class="box-course">
+                <!-- Display the courses for the current teacher -->
+                @foreach (var course in teacherCourses)
+                {
+                    <a href="~/Teacher/Course_Menu?courseId=@course.id" style="text-decoration:none; color: black">
+                        <div class="course" style="margin:25px;">
+                            <div><img src="~/Images/student-studying.jpg" class="course-pic" alt="Course picture" /></div>
+                            <div class="info"><strong>Name: @course.name</strong></div>
+                            <div class="info"><strong>Course Level:</strong>  @course.courseLevel</div>
+                            <div class="info"><strong>Module:</strong>  @course.module</div>
+                            <div class="info"><strong>Duration:</strong>  @course.duration</div>
+                            <div class="info"><strong>Begin:</strong>  @course.beginDay.ToString().Substring(0, 10)</div>
+                            <div class="info"><strong>End:</strong>  @course.endDay.ToString().Substring(0, 10)</div>
+                            <div class="info"><strong>Time:</strong>  @course.time</div>
+                            <div class="info"><strong>Room:</strong>  @course.room</div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            <span class="notice">YOU CURRENTLY HAVE NO CLASS</span>
+        }
+    }
+}
+
+else if (Session["ta_id"] != null)
+{
+    int teacherid = (int)Session["ta_id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Course> teacherCourses = context.Courses.Where(c => c.TA_ID == teacherid).ToList();
+
+        if (teacherCourses.Any())
+        {
+            <div class="box-course">
+                <!-- Display the courses for the current teacher -->
+                @foreach (var course in teacherCourses)
+                {
+                    <a href="~/Teacher/Course_Menu?courseId=@course.id" style="text-decoration:none; color: black">
+                        <div class="course" style="margin:25px;">
+                            <div><img src="~/Images/student-studying.jpg" class="course-pic" alt="Course picture" /></div>
+                            <div class="info"><strong>Name: @course.name</strong></div>
+                            <div class="info"><strong>Course Level:</strong>  @course.courseLevel</div>
+                            <div class="info"><strong>Module:</strong>  @course.module</div>
+                            <div class="info"><strong>Duration:</strong>  @course.duration</div>
+                            <div class="info"><strong>Begin:</strong>  @course.beginDay.ToString().Substring(0, 10)</div>
+                            <div class="info"><strong>End:</strong>  @course.endDay.ToString().Substring(0, 10)</div>
+                            <div class="info"><strong>Time:</strong>  @course.time</div>
+                            <div class="info"><strong>Room:</strong>  @course.room</div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            <span class="notice">YOU CURRENTLY HAVE NO CLASS</span>
+        }
+    }
+}
+
+else
+{
+    <span class="notice"> LOGIN TO SEE YOUR COURSES</span>
+}

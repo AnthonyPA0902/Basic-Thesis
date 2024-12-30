@@ -1,0 +1,163 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Grade";
+    Layout = "~/Views/Shared/Teacher_Layout.cshtml";
+
+    int courseId = Convert.ToInt32(Request.QueryString["courseId"]);
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="~/CSS/grade.css" />
+<script>
+    function filterGrade() {
+        var selectedStudentId = document.getElementById("studentFilter").value;
+
+        var rows = document.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            if (i === 0 || rows[i].getAttribute("data-student-id") === selectedStudentId || selectedStudentId === "all") {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+<a href="~/Teacher/Course_Menu?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE MENU</a>
+@if (Session["id"] != null)
+{
+    int teacherid = (int)Session["id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Grade> grade = context.Grades
+            .Where(a => a.courseId == courseId)
+            .ToList();
+
+        <select id="studentFilter" onchange="filterGrade()">
+            <option value="all">All Students</option>
+            @{
+                var uniqueStudentNames = new HashSet<string>();
+
+                foreach (var item in grade)
+                {
+                    if (uniqueStudentNames.Add(item.Student.englishName))
+                    {
+                        <option value="@item.Student.id">@item.Student.englishName</option>
+                    }
+                }
+            }
+        </select>
+
+        if (grade.Any())
+        {
+            <a href="~/Teacher/CreateGrade?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">ADD</a>
+            <table class="table table-striped" style="margin: 30px">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Attendance</th>
+                        <th scope="col">Course Project</th>
+                        <th scope="col">Homework</th>
+                        <th scope="col">MMT</th>
+                        <th scope="col">EOMT</th>
+                        <th scope="col">Total</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in grade)
+                    {
+                        <tr data-student-id="@item.Student.id">
+                            <td style="font-weight:bold">@item.Student.englishName</td>
+                            <td style="font-weight:bold">@item.attendance</td>
+                            <td style="font-weight:bold">@item.courseProject</td>
+                            <td style="font-weight:bold">@item.homework</td>
+                            <td style="font-weight:bold">@item.MMT</td>
+                            <td style="font-weight:bold">@item.EOMT</td>
+                            <td style="font-weight:bold; color:red;">@item.total</td>
+                            <td style="text-align: right">
+                                <form action="@Url.Action("EditGrade", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Edit</button>
+                                </form>
+                            </td>
+                            <td style="text-align: left">
+                                <form action="@Url.Action("DeleteGrade", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}
+@if (Session["ta_id"] != null)
+{
+    int teacherid = (int)Session["ta_id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Grade> grade = context.Grades
+            .Where(a => a.courseId == courseId)
+            .ToList();
+
+        <select id="studentFilter" onchange="filterGrade()">
+            <option value="all">All Students</option>
+            @{
+                var uniqueStudentNames = new HashSet<string>();
+
+                foreach (var item in grade)
+                {
+                    if (uniqueStudentNames.Add(item.Student.englishName))
+                    {
+                        <option value="@item.Student.id">@item.Student.englishName</option>
+                    }
+                }
+            }
+        </select>
+
+        if (grade.Any())
+        {
+            <a href="~/Teacher/CreateGrade?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">ADD</a>
+            <table class="table table-striped" style="margin: 30px">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Attendance</th>
+                        <th scope="col">Course Project</th>
+                        <th scope="col">Homework</th>
+                        <th scope="col">MMT</th>
+                        <th scope="col">EOMT</th>
+                        <th scope="col">Total</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in grade)
+                    {
+                        <tr data-student-id="@item.Student.id">
+                            <td style="font-weight:bold">@item.Student.englishName</td>
+                            <td style="font-weight:bold">@item.attendance</td>
+                            <td style="font-weight:bold">@item.courseProject</td>
+                            <td style="font-weight:bold">@item.homework</td>
+                            <td style="font-weight:bold">@item.MMT</td>
+                            <td style="font-weight:bold">@item.EOMT</td>
+                            <td style="font-weight:bold; color:red;">@item.total</td>
+                            <td style="text-align: right">
+                                <form action="@Url.Action("EditGrade", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Edit</button>
+                                </form>
+                            </td>
+                            <td style="text-align: left">
+                                <form action="@Url.Action("DeleteGrade", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

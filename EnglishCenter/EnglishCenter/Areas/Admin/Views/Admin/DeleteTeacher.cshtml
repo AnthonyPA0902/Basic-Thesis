@@ -1,0 +1,85 @@
+﻿@model EnglishCenter.Models.Teacher
+@{
+    ViewBag.Title = "DeleteTeacher";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="padding-left: 5%; padding-top: 2%">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-weight:bold; font-size:20px">
+                    <img src="~/Areas/Admin/assets/img/error.png" width="30" height="30" />
+                    Xem Lại Thông Tin Trước Khi Xóa
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div>
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            Mã Giáo Viên
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.id)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Tên Giáo Viên
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.name)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Vai Trò
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.role)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Tên Tài Khoản
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.username)
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Mật Khẩu
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(model => model.password)
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Xóa" class="btn btn-primary" />
+                                            <a href="~/Admin/Admin/TeacherList"><input type="button" value="Hủy" class="btn btn-primary" /></a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

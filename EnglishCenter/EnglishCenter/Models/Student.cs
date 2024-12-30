@@ -17,20 +17,28 @@ namespace EnglishCenter.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
-            this.Courses = new HashSet<Course>();
+            this.Attendances = new HashSet<Attendance>();
+            this.Grades = new HashSet<Grade>();
+            this.Homework = new HashSet<Homework>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
         public string englishName { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
-        public string telephone { get; set; }
         public string gender { get; set; }
         public string contactPerson { get; set; }
+        public string telephone { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        public int courseID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
+        public virtual Course Course { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Grade> Grades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Homework> Homework { get; set; }
     }
 }

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Thesis\\Ni\u00EAn Lu\u1EADn C\u01A1 S\u1EDF\\EnglishCenter\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4B72D352-C7DF-4A00-89B7-B4FAC37974CA}|EnglishCenter\\EnglishCenter.csproj|c:\\users\\admin\\onedrive\\desktop\\thesis\\ni\u00EAn lu\u1EADn c\u01A1 s\u1EDF\\englishcenter\\englishcenter\\views\\teacher\\attendance.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4B72D352-C7DF-4A00-89B7-B4FAC37974CA}|EnglishCenter\\EnglishCenter.csproj|solutionrelative:englishcenter\\views\\teacher\\attendance.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Attendance.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Thesis\\Ni\u00EAn Lu\u1EADn C\u01A1 S\u1EDF\\EnglishCenter\\EnglishCenter\\Views\\Teacher\\Attendance.cshtml",
+              "RelativeDocumentMoniker": "EnglishCenter\\Views\\Teacher\\Attendance.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Thesis\\Ni\u00EAn Lu\u1EADn C\u01A1 S\u1EDF\\EnglishCenter\\EnglishCenter\\Views\\Teacher\\Attendance.cshtml",
+              "RelativeToolTip": "EnglishCenter\\Views\\Teacher\\Attendance.cshtml",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-18T09:16:12.946Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

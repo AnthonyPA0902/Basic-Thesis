@@ -1,0 +1,72 @@
+﻿@font-face {
+    font-family: "Inter";
+    src: url(../fonts/Inter-VariableFont_slnt,wght.ttf)
+}
+
+@font-face {
+    font-family: "Lexend_Deca";
+    src: url(../fonts/LexendDeca-VariableFont_wght.ttf)
+}
+
+.info-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.contain {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    grid-column: 1 / 2;
+    padding: 50px 100px;
+    font-family: "Inter", sans-serif;
+    color: white;
+    background-color: hsl(244, 38%, 16%);
+}
+
+.picture {
+    grid-column: 3 / 4;
+}
+
+.work-photo {
+    width: 600px;
+    height: 375px;
+    background-color: hsl(277, 64%, 61%);
+}
+
+.title {
+    font-weight: 700;
+    font-size: 25px;
+    color: hsl(0, 0%, 100%);
+}
+
+.strong {
+    color: hsl(277, 64%, 61%);
+}
+
+.text {
+    color: hsla(0, 0%, 100%, 0.75);
+    font-size: 13px;
+}
+
+.numbers {
+    display: flex;
+    gap: 100px;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.numbers-info {
+    display: flex;
+    gap: 100px;
+    color: hsla(0, 0%, 100%, 0.75);
+    font-size: 10px;
+}

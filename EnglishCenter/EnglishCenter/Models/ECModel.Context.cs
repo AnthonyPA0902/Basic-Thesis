@@ -25,14 +25,15 @@ namespace EnglishCenter.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Attendance> Attendances { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Course_Schedule> Course_Schedule { get; set; }
+        public virtual DbSet<Grade> Grades { get; set; }
+        public virtual DbSet<Homework> Homework { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TA> TAs { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
-        public virtual DbSet<Course_Schedule> Course_Schedule { get; set; }
-        public virtual DbSet<Grade> Grades { get; set; }
-        public virtual DbSet<Homework> Homeworks { get; set; }
-        public virtual DbSet<Picture> Pictures { get; set; }
     }
 }

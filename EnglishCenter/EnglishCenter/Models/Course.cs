@@ -17,7 +17,11 @@ namespace EnglishCenter.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
+            this.Attendances = new HashSet<Attendance>();
+            this.Course_Schedule = new HashSet<Course_Schedule>();
             this.Grades = new HashSet<Grade>();
+            this.Homework = new HashSet<Homework>();
+            this.Students = new HashSet<Student>();
         }
     
         public int id { get; set; }
@@ -29,15 +33,20 @@ namespace EnglishCenter.Models
         public Nullable<System.DateTime> endDay { get; set; }
         public string time { get; set; }
         public string room { get; set; }
-        public int teacherId { get; set; }
-        public int studentId { get; set; }
+        public int teacherID { get; set; }
+        public int TA_ID { get; set; }
     
-        public virtual Course_Schedule Course_Schedule { get; set; }
-        public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attendance> Attendances { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course_Schedule> Course_Schedule { get; set; }
+        public virtual TA TA { get; set; }
         public virtual Teacher Teacher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grade> Grades { get; set; }
-        public virtual Homework Homework { get; set; }
-        public virtual Picture Picture { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Homework> Homework { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

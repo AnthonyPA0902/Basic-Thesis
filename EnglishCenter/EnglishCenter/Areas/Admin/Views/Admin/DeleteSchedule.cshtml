@@ -1,0 +1,86 @@
+﻿@model EnglishCenter.Models.Course_Schedule
+@{
+    ViewBag.Title = "DeleteSchedule";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="padding-left: 5%; padding-top: 2%">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-weight:bold; font-size:20px">
+                <img src="~/Areas/Admin/assets/img/error.png" width="30" height="30" />
+                Xem Lại Thông Tin Trước Khi Xóa
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        Mã Lịch Học
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.id)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                       Bài Học Số
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => model.lesson)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ngày
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => model.date)
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mục và Chương Trình
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => model.unit_and_grade)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mục Tiêu Bài Học
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => model.lessonAims)
+                                    </td>
+                                </tr>
+                            </table>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Xóa" class="btn btn-primary" />
+                                        <a href="~/Admin/Admin/ScheduleList"><input type="button" value="Hủy" class="btn btn-primary" /></a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

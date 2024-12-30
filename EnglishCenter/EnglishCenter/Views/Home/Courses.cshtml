@@ -1,0 +1,48 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/CSS/courses.css" />
+
+@if (Session["id"] != null)
+{
+    int courseID = (int) Session["courseID"]; 
+
+    using (var context = new EnglishCenterDBEntities()) 
+    {
+        List<Course> studentCourses = context.Courses.Where(c => c.id == courseID).ToList();
+
+        if (studentCourses.Any())
+        {
+            <div class="box-course">
+                <!-- Display the courses for the current student -->
+                @foreach (var course in studentCourses)
+                {
+                <a href="~/Home/Course_Menu" style="text-decoration:none; color: black">
+                 <div class="course">
+                    <div><img src="~/Images/student-studying.jpg" class="course-pic" alt="Course picture" /></div>
+                    <div class="info"><strong>Name: @course.name</strong></div>
+                    <div class="info"><strong>Course Level:</strong>  @course.courseLevel</div>
+                    <div class="info"><strong>Module:</strong>  @course.module</div>
+                    <div class="info"><strong>Duration:</strong>  @course.duration</div>
+                    <div class="info"><strong>Begin:</strong>  @course.beginDay.ToString().Substring(0, 10)</div>
+                    <div class="info"><strong>End:</strong>  @course.endDay.ToString().Substring(0, 10)</div>
+                    <div class="info"><strong>Time:</strong>  @course.time</div>
+                    <div class="info"><strong>Room:</strong>  @course.room</div>
+                 </div>
+                </a>
+                }
+            </div>
+        }
+        else
+        {
+            <span class="notice">BẠN ĐÃ HẾT KHÓA HỌC</span>
+        }
+    }
+}
+else
+{
+    <span class="notice"> ĐĂNG NHẬP ĐỂ THẤY ĐƯỢC KHÓA HỌC CỦA BẠN </span>
+}

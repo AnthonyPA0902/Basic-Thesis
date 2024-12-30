@@ -1,0 +1,48 @@
+﻿h1 {
+    text-align: center;
+    color: cornflowerblue;
+    padding-top: 60px;
+}
+
+.info {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.product {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.context {
+    border: 1px solid #dee2e6;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h3 {
+    font-family: "Fraunces", sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #495057;
+}
+
+.h6 {
+    font-size: 14px;
+    color: #6c757d;
+}

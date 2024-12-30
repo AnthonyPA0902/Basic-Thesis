@@ -5,96 +5,95 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="EnglishCenterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lesson" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="attend" Type="bit" />
+          <Property Name="studentId" Type="int" Nullable="false" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="courseLevel" Type="varchar" MaxLength="20" />
-          <Property Name="module" Type="varchar" MaxLength="20" />
-          <Property Name="duration" Type="varchar" MaxLength="30" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="courseLevel" Type="nvarchar" MaxLength="20" />
+          <Property Name="module" Type="nvarchar" MaxLength="20" />
+          <Property Name="duration" Type="nvarchar" MaxLength="30" />
           <Property Name="beginDay" Type="date" />
           <Property Name="endDay" Type="date" />
-          <Property Name="time" Type="varchar" MaxLength="30" />
-          <Property Name="room" Type="varchar" MaxLength="10" />
-          <Property Name="teacherId" Type="int" Nullable="false" />
-          <Property Name="studentId" Type="int" Nullable="false" />
+          <Property Name="time" Type="nvarchar" MaxLength="30" />
+          <Property Name="room" Type="nvarchar" MaxLength="10" />
+          <Property Name="teacherID" Type="int" Nullable="false" />
+          <Property Name="TA_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EnglishCenterDB.dbo.Course_Schedule' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Course_Schedule">
           <Key>
-            <PropertyRef Name="courseId" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="lesson" Type="int" />
           <Property Name="date" Type="date" />
-          <Property Name="unit_and_grade" Type="varchar" MaxLength="30" />
-          <Property Name="lessonAims" Type="varchar" MaxLength="200" />
-          <Property Name="notes" Type="varchar" MaxLength="100" />
-          <Property Name="teacher" Type="varchar" MaxLength="50" />
-          <Property Name="TA" Type="varchar" MaxLength="50" />
+          <Property Name="unit_and_grade" Type="nvarchar" MaxLength="30" />
+          <Property Name="lessonAims" Type="nvarchar" MaxLength="200" />
+          <Property Name="notes" Type="nvarchar" MaxLength="100" />
+          <Property Name="teacher" Type="nvarchar" MaxLength="50" />
+          <Property Name="TA" Type="nvarchar" MaxLength="50" />
           <Property Name="courseId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EnglishCenterDB.dbo.Grade' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Grade">
           <Key>
-            <PropertyRef Name="courseId" />
-            <PropertyRef Name="teacherId" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="attendance" Type="float" />
           <Property Name="courseProject" Type="float" />
           <Property Name="homework" Type="float" />
           <Property Name="MMT" Type="float" />
-          <Property Name="EOCT" Type="float" />
+          <Property Name="EOMT" Type="float" />
           <Property Name="total" Type="float" />
           <Property Name="courseId" Type="int" Nullable="false" />
-          <Property Name="teacherId" Type="int" Nullable="false" />
+          <Property Name="studentId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EnglishCenterDB.dbo.Homeworks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Homeworks">
+        <EntityType Name="Homework">
           <Key>
-            <PropertyRef Name="courseId" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="date" Type="date" />
           <Property Name="score" Type="float" />
-          <Property Name="total" Type="float" />
           <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="studentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="telephone" Type="varchar" MaxLength="11" />
-          <Property Name="username" Type="varchar" MaxLength="30" />
-          <Property Name="password" Type="varchar" MaxLength="30" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Picture">
-          <Key>
-            <PropertyRef Name="courseId" />
-          </Key>
-          <Property Name="coursePicture" Type="varchar" MaxLength="100" />
-          <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="11" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="englishName" Type="varchar" MaxLength="30" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="englishName" Type="nvarchar" MaxLength="30" />
           <Property Name="birthday" Type="date" />
-          <Property Name="telephone" Type="varchar" MaxLength="11" />
-          <Property Name="gender" Type="varchar" MaxLength="5" />
-          <Property Name="contactPerson" Type="varchar" MaxLength="50" />
-          <Property Name="username" Type="varchar" MaxLength="30" />
-          <Property Name="password" Type="varchar" MaxLength="30" />
+          <Property Name="gender" Type="nvarchar" MaxLength="5" />
+          <Property Name="contactPerson" Type="nvarchar" MaxLength="30" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="11" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" />
+          <Property Name="courseID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -106,21 +105,56 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="nvarchar" MaxLength="5" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="11" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="gender" Type="varchar" MaxLength="5" />
-          <Property Name="role" Type="varchar" MaxLength="20" />
-          <Property Name="telephone" Type="varchar" MaxLength="11" />
-          <Property Name="username" Type="varchar" MaxLength="30" />
-          <Property Name="password" Type="varchar" MaxLength="30" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="nvarchar" MaxLength="5" />
+          <Property Name="role" Type="nvarchar" MaxLength="20" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="11" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" />
         </EntityType>
+        <Association Name="FK_Attendance_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Course_Schedule_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Course_Schedule" Type="Self.Course_Schedule" Multiplicity="0..1" />
+          <End Role="Course_Schedule" Type="Self.Course_Schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="id" />
@@ -130,15 +164,15 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Course_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+        <Association Name="FK_Course_TA">
+          <End Role="TA" Type="Self.TA" Multiplicity="1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="TA">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="studentId" />
+              <PropertyRef Name="TA_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -150,7 +184,7 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="teacherId" />
+              <PropertyRef Name="teacherID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -166,92 +200,79 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Grade_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+        <Association Name="FK_Grade_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teacher">
+            <Principal Role="Student">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Grade">
-              <PropertyRef Name="teacherId" />
+              <PropertyRef Name="studentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Homeworks_Course">
+        <Association Name="FK_Homework_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Homeworks" Type="Self.Homeworks" Multiplicity="0..1" />
+          <End Role="Homework" Type="Self.Homework" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Homeworks">
+            <Dependent Role="Homework">
               <PropertyRef Name="courseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Picture_Course">
+        <Association Name="FK_Homework_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Homework" Type="Self.Homework" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Homework">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Picture">
-              <PropertyRef Name="courseId" />
+            <Dependent Role="Student">
+              <PropertyRef Name="courseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EnglishCenterDBModelStoreContainer">
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_Schedule" EntityType="Self.Course_Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Homework" EntityType="Self.Homework" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TA" EntityType="Self.TA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Course_Schedule" EntityType="Self.Course_Schedule" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Course_Schedule].[lesson] AS [lesson], 
-    [Course_Schedule].[date] AS [date], 
-    [Course_Schedule].[unit_and_grade] AS [unit_and_grade], 
-    [Course_Schedule].[lessonAims] AS [lessonAims], 
-    [Course_Schedule].[notes] AS [notes], 
-    [Course_Schedule].[teacher] AS [teacher], 
-    [Course_Schedule].[TA] AS [TA], 
-    [Course_Schedule].[courseId] AS [courseId]
-    FROM [dbo].[Course_Schedule] AS [Course_Schedule]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Grade" EntityType="Self.Grade" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Grade].[attendance] AS [attendance], 
-    [Grade].[courseProject] AS [courseProject], 
-    [Grade].[homework] AS [homework], 
-    [Grade].[MMT] AS [MMT], 
-    [Grade].[EOCT] AS [EOCT], 
-    [Grade].[total] AS [total], 
-    [Grade].[courseId] AS [courseId], 
-    [Grade].[teacherId] AS [teacherId]
-    FROM [dbo].[Grade] AS [Grade]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Homeworks" EntityType="Self.Homeworks" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Homeworks].[date] AS [date], 
-    [Homeworks].[score] AS [score], 
-    [Homeworks].[total] AS [total], 
-    [Homeworks].[courseId] AS [courseId]
-    FROM [dbo].[Homeworks] AS [Homeworks]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Picture" EntityType="Self.Picture" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Picture].[coursePicture] AS [coursePicture], 
-    [Picture].[courseId] AS [courseId]
-    FROM [dbo].[Picture] AS [Picture]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_Attendance_Course" Association="Self.FK_Attendance_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Student" Association="Self.FK_Attendance_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
           <AssociationSet Name="FK_Course_Schedule_Course" Association="Self.FK_Course_Schedule_Course">
             <End Role="Course" EntitySet="Course" />
             <End Role="Course_Schedule" EntitySet="Course_Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK_Course_Student" Association="Self.FK_Course_Student">
-            <End Role="Student" EntitySet="Student" />
+          <AssociationSet Name="FK_Course_TA" Association="Self.FK_Course_TA">
+            <End Role="TA" EntitySet="TA" />
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
           <AssociationSet Name="FK_Course_Teacher" Association="Self.FK_Course_Teacher">
@@ -262,17 +283,21 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
             <End Role="Course" EntitySet="Course" />
             <End Role="Grade" EntitySet="Grade" />
           </AssociationSet>
-          <AssociationSet Name="FK_Grade_Teacher" Association="Self.FK_Grade_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
+          <AssociationSet Name="FK_Grade_Student" Association="Self.FK_Grade_Student">
+            <End Role="Student" EntitySet="Student" />
             <End Role="Grade" EntitySet="Grade" />
           </AssociationSet>
-          <AssociationSet Name="FK_Homeworks_Course" Association="Self.FK_Homeworks_Course">
+          <AssociationSet Name="FK_Homework_Course" Association="Self.FK_Homework_Course">
             <End Role="Course" EntitySet="Course" />
-            <End Role="Homeworks" EntitySet="Homeworks" />
+            <End Role="Homework" EntitySet="Homework" />
           </AssociationSet>
-          <AssociationSet Name="FK_Picture_Course" Association="Self.FK_Picture_Course">
+          <AssociationSet Name="FK_Homework_Student" Association="Self.FK_Homework_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Homework" EntitySet="Homework" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course" Association="Self.FK_Student_Course">
             <End Role="Course" EntitySet="Course" />
-            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -280,52 +305,113 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EnglishCenterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lesson" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="attend" Type="Boolean" />
+          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Attendance_Course" FromRole="Attendance" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Attendance_Student" FromRole="Attendance" ToRole="Student" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="courseLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="module" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="duration" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="courseLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="module" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="beginDay" Type="DateTime" Precision="0" />
           <Property Name="endDay" Type="DateTime" Precision="0" />
-          <Property Name="time" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="room" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="teacherId" Type="Int32" Nullable="false" />
-          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="room" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="teacherID" Type="Int32" Nullable="false" />
+          <Property Name="TA_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Course" FromRole="Course" ToRole="Attendance" />
           <NavigationProperty Name="Course_Schedule" Relationship="Self.FK_Course_Schedule_Course" FromRole="Course" ToRole="Course_Schedule" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Course_Student" FromRole="Course" ToRole="Student" />
+          <NavigationProperty Name="TA" Relationship="Self.FK_Course_TA" FromRole="Course" ToRole="TA" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_Course_Teacher" FromRole="Course" ToRole="Teacher" />
           <NavigationProperty Name="Grades" Relationship="Self.FK_Grade_Course" FromRole="Course" ToRole="Grade" />
-          <NavigationProperty Name="Homework" Relationship="Self.FK_Homeworks_Course" FromRole="Course" ToRole="Homeworks" />
-          <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_Course" FromRole="Course" ToRole="Picture" />
+          <NavigationProperty Name="Homework" Relationship="Self.FK_Homework_Course" FromRole="Course" ToRole="Homework" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Student_Course" FromRole="Course" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Course_Schedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lesson" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="unit_and_grade" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="lessonAims" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Course_Schedule_Course" FromRole="Course_Schedule" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="attendance" Type="Double" />
+          <Property Name="courseProject" Type="Double" />
+          <Property Name="homework" Type="Double" />
+          <Property Name="MMT" Type="Double" />
+          <Property Name="EOMT" Type="Double" />
+          <Property Name="total" Type="Double" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Grade_Course" FromRole="Grade" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Grade_Student" FromRole="Grade" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Homework">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="score" Type="Double" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Homework_Course" FromRole="Homework" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Homework_Student" FromRole="Homework" ToRole="Student" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="englishName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="englishName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="birthday" Type="DateTime" Precision="0" />
-          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="contactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Student" FromRole="Student" ToRole="Course" />
+          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="contactPerson" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Student" FromRole="Student" ToRole="Attendance" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Student_Course" FromRole="Student" ToRole="Course" />
+          <NavigationProperty Name="Grades" Relationship="Self.FK_Grade_Student" FromRole="Student" ToRole="Grade" />
+          <NavigationProperty Name="Homework" Relationship="Self.FK_Homework_Student" FromRole="Student" ToRole="Homework" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -337,71 +423,58 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="TA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_Course_TA" FromRole="TA" ToRole="Course" />
+        </EntityType>
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Teacher" FromRole="Teacher" ToRole="Course" />
-          <NavigationProperty Name="Grades" Relationship="Self.FK_Grade_Teacher" FromRole="Teacher" ToRole="Grade" />
         </EntityType>
-        <EntityType Name="Course_Schedule">
-          <Key>
-            <PropertyRef Name="courseId" />
-          </Key>
-          <Property Name="lesson" Type="Int32" />
-          <Property Name="date" Type="DateTime" Precision="0" />
-          <Property Name="unit_and_grade" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="lessonAims" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="courseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Course_Schedule_Course" FromRole="Course_Schedule" ToRole="Course" />
-        </EntityType>
-        <EntityType Name="Grade">
-          <Key>
-            <PropertyRef Name="courseId" />
-            <PropertyRef Name="teacherId" />
-          </Key>
-          <Property Name="attendance" Type="Double" />
-          <Property Name="courseProject" Type="Double" />
-          <Property Name="homework" Type="Double" />
-          <Property Name="MMT" Type="Double" />
-          <Property Name="EOCT" Type="Double" />
-          <Property Name="total" Type="Double" />
-          <Property Name="courseId" Type="Int32" Nullable="false" />
-          <Property Name="teacherId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Grade_Course" FromRole="Grade" ToRole="Course" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK_Grade_Teacher" FromRole="Grade" ToRole="Teacher" />
-        </EntityType>
-        <EntityType Name="Homework">
-          <Key>
-            <PropertyRef Name="courseId" />
-          </Key>
-          <Property Name="date" Type="DateTime" Precision="0" />
-          <Property Name="score" Type="Double" />
-          <Property Name="total" Type="Double" />
-          <Property Name="courseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Homeworks_Course" FromRole="Homeworks" ToRole="Course" />
-        </EntityType>
-        <EntityType Name="Picture">
-          <Key>
-            <PropertyRef Name="courseId" />
-          </Key>
-          <Property Name="coursePicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="courseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Picture_Course" FromRole="Picture" ToRole="Course" />
-        </EntityType>
+        <Association Name="FK_Attendance_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Course_Schedule_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Course_Schedule" Type="Self.Course_Schedule" Multiplicity="0..1" />
+          <End Role="Course_Schedule" Type="Self.Course_Schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="id" />
@@ -411,15 +484,15 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Course_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+        <Association Name="FK_Course_TA">
+          <End Role="TA" Type="Self.TA" Multiplicity="1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="TA">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="studentId" />
+              <PropertyRef Name="TA_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -431,7 +504,7 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="teacherId" />
+              <PropertyRef Name="teacherID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -447,58 +520,79 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Homeworks_Course">
+        <Association Name="FK_Homework_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Homeworks" Type="Self.Homework" Multiplicity="0..1" />
+          <End Role="Homework" Type="Self.Homework" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Homeworks">
+            <Dependent Role="Homework">
               <PropertyRef Name="courseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Picture_Course">
+        <Association Name="FK_Student_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Picture">
-              <PropertyRef Name="courseId" />
+            <Dependent Role="Student">
+              <PropertyRef Name="courseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Grade_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+        <Association Name="FK_Grade_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teacher">
+            <Principal Role="Student">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Grade">
-              <PropertyRef Name="teacherId" />
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Homework_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Homework" Type="Self.Homework" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Homework">
+              <PropertyRef Name="studentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EnglishCenterDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attendances" EntityType="Self.Attendance" />
           <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="Course_Schedule" EntityType="Self.Course_Schedule" />
+          <EntitySet Name="Grades" EntityType="Self.Grade" />
+          <EntitySet Name="Homework" EntityType="Self.Homework" />
           <EntitySet Name="Managers" EntityType="Self.Manager" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TAs" EntityType="Self.TA" />
           <EntitySet Name="Teachers" EntityType="Self.Teacher" />
-          <EntitySet Name="Course_Schedule" EntityType="Self.Course_Schedule" />
-          <EntitySet Name="Grades" EntityType="Self.Grade" />
-          <EntitySet Name="Homeworks" EntityType="Self.Homework" />
-          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <AssociationSet Name="FK_Attendance_Course" Association="Self.FK_Attendance_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Student" Association="Self.FK_Attendance_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
           <AssociationSet Name="FK_Course_Schedule_Course" Association="Self.FK_Course_Schedule_Course">
             <End Role="Course" EntitySet="Courses" />
             <End Role="Course_Schedule" EntitySet="Course_Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK_Course_Student" Association="Self.FK_Course_Student">
-            <End Role="Student" EntitySet="Students" />
+          <AssociationSet Name="FK_Course_TA" Association="Self.FK_Course_TA">
+            <End Role="TA" EntitySet="TAs" />
             <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
           <AssociationSet Name="FK_Course_Teacher" Association="Self.FK_Course_Teacher">
@@ -509,17 +603,21 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
             <End Role="Course" EntitySet="Courses" />
             <End Role="Grade" EntitySet="Grades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Homeworks_Course" Association="Self.FK_Homeworks_Course">
+          <AssociationSet Name="FK_Homework_Course" Association="Self.FK_Homework_Course">
             <End Role="Course" EntitySet="Courses" />
-            <End Role="Homeworks" EntitySet="Homeworks" />
+            <End Role="Homework" EntitySet="Homework" />
           </AssociationSet>
-          <AssociationSet Name="FK_Picture_Course" Association="Self.FK_Picture_Course">
+          <AssociationSet Name="FK_Student_Course" Association="Self.FK_Student_Course">
             <End Role="Course" EntitySet="Courses" />
-            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="Student" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="FK_Grade_Teacher" Association="Self.FK_Grade_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
+          <AssociationSet Name="FK_Grade_Student" Association="Self.FK_Grade_Student">
+            <End Role="Student" EntitySet="Students" />
             <End Role="Grade" EntitySet="Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Homework_Student" Association="Self.FK_Homework_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Homework" EntitySet="Homework" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -528,6 +626,18 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EnglishCenterDBModelStoreContainer" CdmEntityContainer="EnglishCenterDBEntities">
+          <EntitySetMapping Name="Attendances">
+            <EntityTypeMapping TypeName="EnglishCenterDBModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lesson" ColumnName="lesson" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="attend" ColumnName="attend" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="EnglishCenterDBModel.Course">
               <MappingFragment StoreEntitySet="Course">
@@ -540,7 +650,48 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
                 <ScalarProperty Name="endDay" ColumnName="endDay" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="room" ColumnName="room" />
-                <ScalarProperty Name="teacherId" ColumnName="teacherId" />
+                <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+                <ScalarProperty Name="TA_ID" ColumnName="TA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Schedule">
+            <EntityTypeMapping TypeName="EnglishCenterDBModel.Course_Schedule">
+              <MappingFragment StoreEntitySet="Course_Schedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lesson" ColumnName="lesson" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="unit_and_grade" ColumnName="unit_and_grade" />
+                <ScalarProperty Name="lessonAims" ColumnName="lessonAims" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="teacher" ColumnName="teacher" />
+                <ScalarProperty Name="TA" ColumnName="TA" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="EnglishCenterDBModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="attendance" ColumnName="attendance" />
+                <ScalarProperty Name="courseProject" ColumnName="courseProject" />
+                <ScalarProperty Name="homework" ColumnName="homework" />
+                <ScalarProperty Name="MMT" ColumnName="MMT" />
+                <ScalarProperty Name="EOMT" ColumnName="EOMT" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Homework">
+            <EntityTypeMapping TypeName="EnglishCenterDBModel.Homework">
+              <MappingFragment StoreEntitySet="Homework">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
                 <ScalarProperty Name="studentId" ColumnName="studentId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -563,11 +714,12 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="englishName" ColumnName="englishName" />
                 <ScalarProperty Name="birthday" ColumnName="birthday" />
-                <ScalarProperty Name="telephone" ColumnName="telephone" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="contactPerson" ColumnName="contactPerson" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -582,6 +734,18 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TAs">
+            <EntityTypeMapping TypeName="EnglishCenterDBModel.TA">
+              <MappingFragment StoreEntitySet="TA">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="EnglishCenterDBModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
@@ -592,52 +756,6 @@ warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a prima
                 <ScalarProperty Name="telephone" ColumnName="telephone" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Course_Schedule">
-            <EntityTypeMapping TypeName="EnglishCenterDBModel.Course_Schedule">
-              <MappingFragment StoreEntitySet="Course_Schedule">
-                <ScalarProperty Name="lesson" ColumnName="lesson" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="unit_and_grade" ColumnName="unit_and_grade" />
-                <ScalarProperty Name="lessonAims" ColumnName="lessonAims" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
-                <ScalarProperty Name="teacher" ColumnName="teacher" />
-                <ScalarProperty Name="TA" ColumnName="TA" />
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Grades">
-            <EntityTypeMapping TypeName="EnglishCenterDBModel.Grade">
-              <MappingFragment StoreEntitySet="Grade">
-                <ScalarProperty Name="attendance" ColumnName="attendance" />
-                <ScalarProperty Name="courseProject" ColumnName="courseProject" />
-                <ScalarProperty Name="homework" ColumnName="homework" />
-                <ScalarProperty Name="MMT" ColumnName="MMT" />
-                <ScalarProperty Name="EOCT" ColumnName="EOCT" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
-                <ScalarProperty Name="teacherId" ColumnName="teacherId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Homeworks">
-            <EntityTypeMapping TypeName="EnglishCenterDBModel.Homework">
-              <MappingFragment StoreEntitySet="Homeworks">
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="score" ColumnName="score" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pictures">
-            <EntityTypeMapping TypeName="EnglishCenterDBModel.Picture">
-              <MappingFragment StoreEntitySet="Picture">
-                <ScalarProperty Name="coursePicture" ColumnName="coursePicture" />
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

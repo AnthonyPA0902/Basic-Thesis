@@ -1,0 +1,75 @@
+﻿@model Tuple<PagedList.IPagedList<EnglishCenter.Models.Course_Schedule>, string>
+@using PagedList.Mvc;
+@using EnglishCenter.Models;
+@{
+    ViewBag.Title = "ScheduleList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script>
+    window.onload = function () {
+        var searchParams = new URLSearchParams(window.location.search);
+        var scheduleName = searchParams.get("lessionAims");
+        if (scheduleName !== null) {
+            document.getElementById("timbaihoc").value = scheduleName;
+        }
+    }
+    function showSearch() {
+        var search = $('#timbaihoc').val();
+        window.location.href = '/Admin/Admin/ScheduleList?scheduleLesson=' + encodeURIComponent(search);
+    }
+</script>
+<h1> CÁC KHÓA HỌC HIỆN CÓ </h1>
+<p style="margin-left:10px;">
+    <button class="btn btn-primary" type="button" onclick="window.open('/Admin/Admin/CreateSchedule','_self')">
+        Thêm Khóa Học
+    </button>
+</p>
+<hr />
+<div class="search" style="padding-left: 50% ">
+    <input id="timbaihoc" class="search__input" type="text" placeholder="Tìm Nội Dung Bài Học">
+    <button id="btn-timkiem" class="btn btn-bitbucket" onclick="showSearch()"><img src="~/Areas/Admin/assets/img/search.png" alt="search" width="15"></button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Bài Học</th>
+            <th scope="col">Ngày</th>
+            <th scope="col">Mục và Cấp Độ</th>
+            <th scope="col">Mục Tiêu Bài Học</th>
+            <th scope="col">Ghi Chú</th>
+            <th scope="col">Giáo Viên</th>
+            <th scope="col">Trợ Giảng</th>
+            <th scope="col">Khóa Học</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item1)
+        {
+            <tr>
+                <th scope="row">@item.lesson</th>
+                <td>@item.date.ToString().Substring(0, 10)</td>
+                <td>@item.unit_and_grade</td>
+                <td>@item.lessonAims</td>
+                <td>@item.notes</td>
+                <td>@item.teacher</td>
+                <td>@item.TA</td>
+                <td>@item.Course.name</td>
+                <td style="text-align: right">
+                    <form action="@Url.Action("EditSchedule", new { id = item.id })" method="get">
+                        <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Sửa</button>
+                    </form>
+                </td>
+                <td style="text-align: left">
+                    <form action="@Url.Action("DeleteSchedule", new { id = item.id })" method="get">
+                        <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="margin-left:20px;">
+    @Html.PagedListPager(Model.Item1, page => Url.Action("StudentList", new { name = Model.Item2, page }))
+</div>

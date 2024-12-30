@@ -1,0 +1,46 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a href="~/Home/Course_Menu" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE MENU</a>
+@if (Session["id"] != null)
+{
+    int courseID = (int)Session["courseID"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Course_Schedule> courseSchedule = context.Course_Schedule.Where(c => c.courseId == courseID).ToList();
+
+        if (courseSchedule.Any())
+        {
+            <table class="table" style="margin: 30px; border: 2px solid black">
+                <thead>
+                    <tr>
+                        <th scope="col">Lesson</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Unit and Level</th>
+                        <th scope="col">Lession Aims</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">TA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in courseSchedule)
+                    {
+                        <tr>
+                            <th scope="row">@item.lesson</th>
+                            <td>@item.date.ToString().Substring(0, 10)</td>
+                            <td>@item.unit_and_grade</td>
+                            <td>@item.lessonAims</td>
+                            <td>@item.notes</td>
+                            <td>@item.Course.Teacher.name</td>
+                            <td>@item.Course.TA.name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

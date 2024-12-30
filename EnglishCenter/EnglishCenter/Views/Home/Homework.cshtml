@@ -1,0 +1,37 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Homework";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a href="~/Home/Course_Menu" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE MENU</a>
+@if (Session["id"] != null)
+{
+    int studentID = (int)Session["id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Homework> homework = context.Homework.Where(c => c.studentId == studentID).ToList();
+
+        if (homework.Any())
+        {
+            <table class="table" style="margin: 30px">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in homework)
+                    {
+                        <tr>
+                            <th scope="row">@item.date.ToString().Substring(0, 10)</th>
+                            <td style="color:red; font-weight:700; font-size: 25px">@item.score</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

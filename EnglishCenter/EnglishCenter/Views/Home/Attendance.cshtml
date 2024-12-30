@@ -1,0 +1,43 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Attendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a href="~/Home/Course_Menu" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px" >BACK TO COURSE MENU</a>
+@if (Session["id"] != null)
+{
+    int studentID = (int)Session["id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Attendance> attendance = context.Attendances.Where(c => c.studentId == studentID).ToList();
+
+        if (attendance.Any())
+        {
+            <table class="table" style="margin: 30px">
+                <thead>
+                    <tr>
+                        <th scope="col">Lesson</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in attendance)
+                    {
+                    <tr>
+                        <th scope="row">@item.lesson</th>
+                        <td>@item.date.ToString().Substring(0, 10)</td>
+                        @if (@item.attend != false) {
+                        <td><img src="~/Images/true-icon.png" style="width:30px" height="30" alt="True Icon" /></td>
+                        }
+                        else {
+                        <td><img src="~/Images/false-icon.png" style="width:30px" height="30"  alt="False Icon" /></td>
+                        }
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

@@ -1,31 +1,115 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/CSS/Index.css" />
+<script src="~/Scripts/index.js"></script>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<hr />
+<div class="ipic">
+    <img class="intro-pic "src="~/Images/intro_pic.jpg" alt="Intro Picture Of Center" />
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<div class="center-name">
+    <h1>SHINING STAR ACADEMY</h1>
+</div>
+
+<div class="introduction">
+    <h2>I. Giới Thiệu</h2>
+    <p class="intro-para"> 
+        Với hơn 15 năm trong nghề cùng với đội ngũ giáo viên và trợ giảng uy tin. Chúng tôi mang đến những kiến thức bổ ích và những kỹ năng hữu ích
+        cho con em bạn trong việc học tiếng Anh. Qua đó từng bước tạo nên những ngôi sao sáng trong tương lai.
+    </p>
+</div>
+
+<div class="program">
+    <h2>II. Chương Trình Đào Tạo</h2>
+    <p>
+        Chương trình được thiết kế theo chuẩn Cambridge và được chứng nhận bởi các chuyên gia hàng đầu về giáo dục.<br />
+        Ở Shining Star, chúng tôi đào tạo các lứa tuổi từ 3 đến 17 tuổi. Chương trình được chia làm 3 Module và được thiết kế để phù hợp với các
+        nhóm tuổi nhất định.
+    </p>
+    <hr />
+    <div class="module">
+            <div class="item1">
+                Với các trẻ từ 3 - 6 tuổi, đây là độ tuổi mới chập chững tiếp xúc với Tiếng Anh. Chúng tôi tập trung hướng dẫn các con học những thứ cơ
+                bản như bảng chữ cái, cách phát âm, các từ vựng đơn giản và thông dụng. Đây được gọi là chương trình Blue Star.
+            </div>
+            <div class="item2">
+                <img class="star" src="~/Images/blue-star.jpg" alt="Blue Star" />
+            </div>
+            <div class="item3">
+                Từ 7 - 12 tuổi, đây là độ tuổi các con dần quen với Tiếng Anh và là giai đoạn quan trọng nhất để hình thành nên nền móng
+                tiếng Anh vững chắc cho con sau này. Chúng tôi tập trung hướng dẫn các con học những ngữ pháp thiết yếu, các từ vựng giao tiếp,
+                cách áp dụng tiếng Anh trong cuộc sống hằng ngày. Đây được gọi là chương trình Yellow Star.
+            </div>
+            <div class="item4">
+                <img class="star" src="~/Images/yellow-star.jpg" alt="Yellow Star" />
+            </div>
+            <div class="item5">
+                Khi các con ở tuổi từ 13 - 17 tuổi, đây là độ tuổi các con đã có thể sử dụng tiếng Anh thuần thục và không ngần ngại. Các con sẽ
+                bắt đầu tìm kiếm điều mình thích ở ngôn ngữ này và dùng nó để vươn mình ra thế giới nhằm trở thành 1 công dân toàn cầu. Chúng tôi
+                tập trung hướng dẫn các con nâng cao cách giao tiếp và ứng xử, củng cố và nâng cao ngữ pháp, rèn luyện tư duy và tính sáng tạo trong
+                suy nghĩ. Đây được gọi là chương trình Red Star.
+            </div>
+            <div class="item6">
+                <img class="star" src="~/Images/red-star.png" alt="Red Star" />
+            </div>
     </div>
 </div>
+<br />
+<div class="pictures">
+    <h2>III. Một Số Hình Ảnh Tiêu Biểu </h2>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="numbertext">1 / 5</div>
+            <img class="slide-pic" src="~/Images/learning.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">2 / 5</div>
+            <img class="slide-pic" src="~/Images/cooking.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">3 / 5</div>
+            <img class="slide-pic" src="~/Images/playing.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">4 / 5</div>
+            <img class="slide-pic" src="~/Images/going.jpg">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">5 / 5</div>
+            <img class="slide-pic" src="~/Images/acting.jpg">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+</div>
+
+<div class="reason">
+    <h2>IV. Tại Sao Bạn Nên Chọn Chúng Tôi </h2>
+    <div class="list-of-reason">
+        <div class="enviroment">
+            <img class="list-logo" src="~/Images/100-percent.jpg" alt="one hundred percent" /><br />
+            <span>Môi Trường Học Tập Một Trăm Phần Trăm Sử Dụng Tiếng Anh</span>
+        </div>
+        <div class="modern">
+            <img class="list-logo" src="~/Images/modern-learning.png" alt="modern learning" /><br />
+            <span>Phương Pháp Và Các Thiết Bị Học Tập Theo Hướng Hiện Đại Hóa</span>
+        </div>
+        <div class="scholarship">
+            <img class="list-logo" src="~/Images/scholarship.jpg" alt="scholarship" /><br />
+            <span>Các Thế Hệ Học Sinh Đều Dành Được Các Suất Học Bổng Nước Ngoài</span>
+        </div>
+    </div>
+</div>
+

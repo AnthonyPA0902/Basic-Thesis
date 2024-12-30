@@ -1,0 +1,92 @@
+﻿@using EnglishCenter.Models
+@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/Teacher_Layout.cshtml";
+
+    int courseId = Convert.ToInt32(Request.QueryString["courseId"]);
+}
+<a href="~/Teacher/Course_Menu?courseId=@courseId" style="text-decoration: none; border: 2px solid black; padding: 10px; margin: 50px">BACK TO COURSE MENU</a>
+@if (Session["id"] != null)
+{
+    int teacherid = (int)Session["id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Course_Schedule> schedule = context.Course_Schedule
+            .Where(a => a.courseId == courseId)
+            .ToList();
+
+        if (schedule.Any())
+        {
+            <table class="table" style="margin: 30px; border: 2px solid black">
+                <thead>
+                    <tr>
+                        <th scope="col">Lesson</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Unit and Level</th>
+                        <th scope="col">Lession Aims</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">TA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in schedule)
+                    {
+                        <tr>
+                            <th scope="row">@item.lesson</th>
+                            <td>@item.date.ToString().Substring(0, 10)</td>
+                            <td>@item.unit_and_grade</td>
+                            <td>@item.lessonAims</td>
+                            <td>@item.notes</td>
+                            <td>@item.Course.Teacher.name</td>
+                            <td>@item.Course.TA.name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}
+@if (Session["ta_id"] != null)
+{
+    int teacherid = (int)Session["ta_id"];
+
+    using (var context = new EnglishCenterDBEntities())
+    {
+        List<Course_Schedule> schedule = context.Course_Schedule
+            .Where(a => a.courseId == courseId)
+            .ToList();
+
+        if (schedule.Any())
+        {
+            <table class="table" style="margin: 30px; border: 2px solid black">
+                <thead>
+                    <tr>
+                        <th scope="col">Lesson</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Unit and Level</th>
+                        <th scope="col">Lession Aims</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">TA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in schedule)
+                    {
+                        <tr>
+                            <th scope="row">@item.lesson</th>
+                            <td>@item.date.ToString().Substring(0, 10)</td>
+                            <td>@item.unit_and_grade</td>
+                            <td>@item.lessonAims</td>
+                            <td>@item.notes</td>
+                            <td>@item.Course.Teacher.name</td>
+                            <td>@item.Course.TA.name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+}

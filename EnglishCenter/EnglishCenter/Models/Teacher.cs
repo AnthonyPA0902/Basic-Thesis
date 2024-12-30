@@ -18,7 +18,6 @@ namespace EnglishCenter.Models
         public Teacher()
         {
             this.Courses = new HashSet<Course>();
-            this.Grades = new HashSet<Grade>();
         }
     
         public int id { get; set; }
@@ -31,7 +30,5 @@ namespace EnglishCenter.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grade> Grades { get; set; }
     }
 }

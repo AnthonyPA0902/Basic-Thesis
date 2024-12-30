@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EnglishCenterDBModelStoreContainer" CdmEntityContainer="EnglishCenterDBEntities">
+    <EntitySetMapping Name="Attendances">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Attendance">
+        <MappingFragment StoreEntitySet="Attendance">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="lesson" ColumnName="lesson" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="attend" ColumnName="attend" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="courseLevel" ColumnName="courseLevel" />
+          <ScalarProperty Name="module" ColumnName="module" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="beginDay" ColumnName="beginDay" />
+          <ScalarProperty Name="endDay" ColumnName="endDay" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="room" ColumnName="room" />
+          <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+          <ScalarProperty Name="TA_ID" ColumnName="TA_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Course_Schedule">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Course_Schedule">
+        <MappingFragment StoreEntitySet="Course_Schedule">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="lesson" ColumnName="lesson" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="unit_and_grade" ColumnName="unit_and_grade" />
+          <ScalarProperty Name="lessonAims" ColumnName="lessonAims" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="teacher" ColumnName="teacher" />
+          <ScalarProperty Name="TA" ColumnName="TA" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Grade">
+        <MappingFragment StoreEntitySet="Grade">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="attendance" ColumnName="attendance" />
+          <ScalarProperty Name="courseProject" ColumnName="courseProject" />
+          <ScalarProperty Name="homework" ColumnName="homework" />
+          <ScalarProperty Name="MMT" ColumnName="MMT" />
+          <ScalarProperty Name="EOMT" ColumnName="EOMT" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Homework">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Homework">
+        <MappingFragment StoreEntitySet="Homework">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="score" ColumnName="score" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Managers">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Manager">
+        <MappingFragment StoreEntitySet="Manager">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="englishName" ColumnName="englishName" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="contactPerson" ColumnName="contactPerson" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAs">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.TA">
+        <MappingFragment StoreEntitySet="TA">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="EnglishCenterDBModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

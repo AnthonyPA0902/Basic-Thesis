@@ -1,0 +1,144 @@
+﻿@model Tuple<PagedList.IPagedList<EnglishCenter.Models.Student>, string>
+@using PagedList.Mvc;
+@using EnglishCenter.Models;
+@{
+    ViewBag.Title = "StudentList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    window.onload = function () {
+        var searchParams = new URLSearchParams(window.location.search);
+        var studentName = searchParams.get("name");
+        if (studentName !== null) {
+            document.getElementById("timhocsinh").value = studentName;
+        }
+    }
+    function showSearch() {
+        var search = $('#timhocsinh').val();
+        console.log("Search value: " + search); // Add this line for debugging
+        window.location.href = '/Admin/Admin/StudentList?name=' + encodeURIComponent(search);
+    }
+</script>
+<style>
+    thead, th {
+        background-color: blue;
+    }
+
+    table {
+        text-align: center;
+        justify-content: center;
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+</style>
+<div class="container">
+    <div style="padding-top:2%">
+        <div class="table-responsive">
+            <div class="col-lg-12">
+                <h1 class="page-header" style="color: lightblue;">DANH SÁCH HỌC VIÊN</h1>
+            </div>
+            <p style="margin-left:10px;">
+                <button class="btn btn-primary" type="button" onclick="window.open('/Admin/Admin/CreateStudent','_self')">
+                    Thêm Học Viên
+                </button>
+            </p>
+            <div class="search" style="padding-left: 50% ">
+                <input id="timhocsinh" class="search__input" type="text" placeholder="Tìm Tên Học Viên">
+                <button id="btn-timkiem" class="btn btn-bitbucket" onclick="showSearch()"><img src="~/Areas/Admin/assets/img/search.png" alt="search" width="15"></button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="color: white">
+                            Mã Học Sinh
+                        </th>
+                        <th style="color: white">
+                            Tên Học Sinh
+                        </th>
+                        <th style="color: white">
+                            Tên Tiếng Anh
+                        </th>
+                        <th style="color: white">
+                            Ngày Sinh
+                        </th>
+                        <th style="color: white">
+                            Giới Tính
+                        </th>
+                        <th style="color: white">
+                            Người Liên Lạc
+                        </th>
+                        <th style="color: white">
+                            Số Điện Thoại
+                        </th>
+                        <th style="color: white">
+                            Tên Tài Khoản
+                        </th>
+                        <th style="color: white">
+                            Mật Khẩu
+                        </th>
+                        <th style="color: white">
+                            Mã Khóa Học
+                        </th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Item1)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.englishName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.birthday).ToString().Substring(0, 10)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.contactPerson)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.telephone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.courseID)
+                            </td>
+                            <td style="text-align: right">
+                                <form action="@Url.Action("EditStudent", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Sửa</button>
+                                </form>
+                            </td>
+                            <td style="text-align: left">
+                                <form action="@Url.Action("DeleteStudent", new { id = item.id })" method="get">
+                                    <button style="padding: 10px 20px; font-size: 16px; border-radius: 3px; background-color: lavender; border: 0px" type="submit">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div style="margin-left:20px;">
+                @Html.PagedListPager(Model.Item1, page => Url.Action("StudentList", new { name = Model.Item2, page }))&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+

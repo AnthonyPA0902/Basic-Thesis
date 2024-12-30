@@ -14,16 +14,17 @@ namespace EnglishCenter.Models
     
     public partial class Grade
     {
+        public int id { get; set; }
         public Nullable<double> attendance { get; set; }
         public Nullable<double> courseProject { get; set; }
         public Nullable<double> homework { get; set; }
         public Nullable<double> MMT { get; set; }
-        public Nullable<double> EOCT { get; set; }
+        public Nullable<double> EOMT { get; set; }
         public Nullable<double> total { get; set; }
         public int courseId { get; set; }
-        public int teacherId { get; set; }
+        public int studentId { get; set; }
     
         public virtual Course Course { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

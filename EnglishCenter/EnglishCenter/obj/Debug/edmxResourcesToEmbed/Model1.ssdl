@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnglishCenterDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="courseLevel" Type="varchar" MaxLength="20" />
+    <Property Name="module" Type="varchar" MaxLength="20" />
+    <Property Name="duration" Type="varchar" MaxLength="30" />
+    <Property Name="beginDay" Type="date" />
+    <Property Name="endDay" Type="date" />
+    <Property Name="time" Type="varchar" MaxLength="30" />
+    <Property Name="room" Type="varchar" MaxLength="10" />
+    <Property Name="teacherId" Type="int" Nullable="false" />
+    <Property Name="studentId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EnglishCenterDB.dbo.Course_Schedule' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Course_Schedule">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="lesson" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="unit_and_grade" Type="varchar" MaxLength="30" />
+    <Property Name="lessonAims" Type="varchar" MaxLength="200" />
+    <Property Name="notes" Type="varchar" MaxLength="100" />
+    <Property Name="teacher" Type="varchar" MaxLength="50" />
+    <Property Name="TA" Type="varchar" MaxLength="50" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EnglishCenterDB.dbo.Grade' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="courseId" />
+      <PropertyRef Name="teacherId" />
+    </Key>
+    <Property Name="attendance" Type="float" />
+    <Property Name="courseProject" Type="float" />
+    <Property Name="homework" Type="float" />
+    <Property Name="MMT" Type="float" />
+    <Property Name="EOCT" Type="float" />
+    <Property Name="total" Type="float" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+    <Property Name="teacherId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EnglishCenterDB.dbo.Homeworks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Homeworks">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="date" Type="date" />
+    <Property Name="score" Type="float" />
+    <Property Name="total" Type="float" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="telephone" Type="varchar" MaxLength="11" />
+    <Property Name="username" Type="varchar" MaxLength="30" />
+    <Property Name="password" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EnglishCenterDB.dbo.Picture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="coursePicture" Type="varchar" MaxLength="100" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="englishName" Type="varchar" MaxLength="30" />
+    <Property Name="birthday" Type="date" />
+    <Property Name="telephone" Type="varchar" MaxLength="11" />
+    <Property Name="gender" Type="varchar" MaxLength="5" />
+    <Property Name="contactPerson" Type="varchar" MaxLength="50" />
+    <Property Name="username" Type="varchar" MaxLength="30" />
+    <Property Name="password" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="varchar" MaxLength="5" />
+    <Property Name="role" Type="varchar" MaxLength="20" />
+    <Property Name="telephone" Type="varchar" MaxLength="11" />
+    <Property Name="username" Type="varchar" MaxLength="30" />
+    <Property Name="password" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_Course_Schedule_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course_Schedule" Type="Self.Course_Schedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course_Schedule">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="teacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grade_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="teacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Homeworks_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Homeworks" Type="Self.Homeworks" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Homeworks">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picture_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EnglishCenterDBModel1StoreContainer">
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course_Schedule" EntityType="Self.Course_Schedule" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Course_Schedule].[lesson] AS [lesson], 
+    [Course_Schedule].[date] AS [date], 
+    [Course_Schedule].[unit_and_grade] AS [unit_and_grade], 
+    [Course_Schedule].[lessonAims] AS [lessonAims], 
+    [Course_Schedule].[notes] AS [notes], 
+    [Course_Schedule].[teacher] AS [teacher], 
+    [Course_Schedule].[TA] AS [TA], 
+    [Course_Schedule].[courseId] AS [courseId]
+    FROM [dbo].[Course_Schedule] AS [Course_Schedule]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Grade" EntityType="Self.Grade" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Grade].[attendance] AS [attendance], 
+    [Grade].[courseProject] AS [courseProject], 
+    [Grade].[homework] AS [homework], 
+    [Grade].[MMT] AS [MMT], 
+    [Grade].[EOCT] AS [EOCT], 
+    [Grade].[total] AS [total], 
+    [Grade].[courseId] AS [courseId], 
+    [Grade].[teacherId] AS [teacherId]
+    FROM [dbo].[Grade] AS [Grade]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Homeworks" EntityType="Self.Homeworks" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Homeworks].[date] AS [date], 
+    [Homeworks].[score] AS [score], 
+    [Homeworks].[total] AS [total], 
+    [Homeworks].[courseId] AS [courseId]
+    FROM [dbo].[Homeworks] AS [Homeworks]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Picture" EntityType="Self.Picture" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Picture].[coursePicture] AS [coursePicture], 
+    [Picture].[courseId] AS [courseId]
+    FROM [dbo].[Picture] AS [Picture]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Course_Schedule_Course" Association="Self.FK_Course_Schedule_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Course_Schedule" EntitySet="Course_Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Student" Association="Self.FK_Course_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Teacher" Association="Self.FK_Course_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Course" Association="Self.FK_Grade_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Grade" EntitySet="Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grade_Teacher" Association="Self.FK_Grade_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Grade" EntitySet="Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Homeworks_Course" Association="Self.FK_Homeworks_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Homeworks" EntitySet="Homeworks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picture_Course" Association="Self.FK_Picture_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Picture" EntitySet="Picture" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
